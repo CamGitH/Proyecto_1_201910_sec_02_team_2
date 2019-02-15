@@ -14,10 +14,12 @@ public class Nodo<T> {
 	public Nodo( T pElemento )
 	{
 		elemento = pElemento;
+		anterior = null;
+		siguiente = null;
 
 	}
 
-	public T darAlgo( )
+	public T darElemento( )
 	{
 		return elemento;
 	}

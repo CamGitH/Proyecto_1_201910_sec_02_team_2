@@ -3,8 +3,7 @@ package model.data_structures;
 import java.util.Iterator;
 
 public class Stack<T> implements IStack<T> {
-	
-	private Nodo<T> primero;
+
 	private Nodo<T> ultimo;
 	private int tamano=0;
 
@@ -12,6 +11,12 @@ public class Stack<T> implements IStack<T> {
 	 * Retorna true si la Pila esta vacia
 	 * @return true si la Pila esta vacia, false de lo contrario
 	 */
+	public Stack( )
+	{
+		ultimo = null;
+		tamano = 0;
+	}
+
 	public boolean isEmpty(){
 		if (tamano==0){
 			return true;
@@ -45,11 +50,13 @@ public class Stack<T> implements IStack<T> {
 	 * @return el elemento agregado más recientemente
 	 */
 	public T pop(){
-		T ret = (T) ultimo;
+		Nodo<T> ret = ultimo;
 		ultimo=ultimo.darSiguiente();
 		ultimo.cambiarAnterior(null);;
-		return ret;
+		tamano--;
+		return ret.darElemento();
 	}
+
 
 	@Override
 	public Iterator<T> iterator() {

@@ -18,28 +18,35 @@ public class LinkedList<T> implements ILinkedList<T>{
 		return primero;
 	}
 
-	public T darUltimo(){
+	public Nodo<T> darUltimo(){
 		return ultimo;
 	}
 
+	public LinkedList()
+	{
+		primero = null;
+		ultimo = null;
+		tamano = 0;
+	}
+
 	public void agregarIni(T nuevo){
-		Nodo<T> nodo = new Nodo(nuevo);
-		if(tamano==0){
-			primero=(T) nodo;
-			ultimo=(T) nodo;
+		Nodo<T> nodo = new Nodo<T>(nuevo);
+		if(primero==null){
+			primero= nodo;
+			ultimo= nodo;
 			tamano ++;
 		}
 		else{
-			((Nodo<T>) nuevo).cambiarSiguiente(primero);
-			primero=nuevo;
+			nodo.cambiarSiguiente(primero);
+			primero=nodo;
 			tamano ++;
 		}
 	}
-	
+
 	public void agregarFinal(T nuevo){
-		Nodo<T> nodo = new Nodo(nuevo);
-		if(tamano==0){
-			
+		Nodo<T> nodo = new Nodo<T>(nuevo);
+		if(primero==null){
+
 			primero= nodo;
 			ultimo= nodo;
 			tamano ++;
@@ -50,10 +57,8 @@ public class LinkedList<T> implements ILinkedList<T>{
 			tamano ++;
 		}
 	}
-	
-	
 
-	
+
 	public Iterator<T> iterator() {
 		// TODO Auto-generated method stub
 		return null;
@@ -87,9 +92,9 @@ public class LinkedList<T> implements ILinkedList<T>{
 			ultimo=null;
 		}
 		else{
-		((Nodo<T>) primero).darSiguiente().cambiarAnterior(null);
-		primero=primero.darSiguiente();
-		tamano --;
+			((Nodo<T>) primero).darSiguiente().cambiarAnterior(null);
+			primero=primero.darSiguiente();
+			tamano --;
 		}
 	}
 }

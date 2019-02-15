@@ -12,6 +12,14 @@ public class Queue<T> implements IQueue<T> {
 	 * Retorna true si la Cola esta vacia
 	 * @return true si la Cola esta vacia, false de lo contrario
 	 */
+	
+	 public Queue( )
+	    {
+	        primero = null;
+	        ultimo = null;
+	        tamano = 0;
+	    }
+	 
 	public boolean isEmpty(){
 		if (tamano==0){
 			return true;
@@ -38,6 +46,7 @@ public class Queue<T> implements IQueue<T> {
 		n.cambiarSiguiente(ultimo);
 		ultimo.cambiarAnterior(n);
 		ultimo=n;
+		tamano++;
 
 	}
 	/**
@@ -45,10 +54,11 @@ public class Queue<T> implements IQueue<T> {
 	 * @return el elemento agregado menos recientemente
 	 */
 	public T dequeue(){
-		T ret = (T) primero;
+		Nodo<T> ret = primero;
 		primero=primero.darAnterior();
 		primero.cambiarSiguiente(null);
-		return ret;
+		tamano--;
+		return ret.darElemento();
 	}
 
 	@Override
@@ -56,4 +66,20 @@ public class Queue<T> implements IQueue<T> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+	 * @return the primero
+	 */
+	public Nodo<T> getPrimero() {
+		return primero;
+	}
+
+	/**
+	 * @return the ultimo
+	 */
+	public Nodo<T> getUltimo() {
+		return ultimo;
+	}
+
+	
 }
