@@ -1,4 +1,4 @@
-package model.movingViolations;
+package model.moving_violations;
 
 
 /**
