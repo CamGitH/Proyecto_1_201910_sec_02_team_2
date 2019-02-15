@@ -128,31 +128,7 @@ public class Controller {
 
 		}
 
-
-		for(int i = 0; i<list1.size();i++){
-
-			if(list1.get(i)==null){
-				continue;
-			}
-			else
-			movingViolationsQueue.enqueue((VOMovingViolations) list1.get(i));
-			movingViolationsStack.push((VOMovingViolations) list1.get(i));
-
-		}
-		for(int i = 0; i<list2.size();i++){
-
-			if(list2.get(i)==null){
-				continue;
-			}
-			else
-			movingViolationsQueue.enqueue((VOMovingViolations) list2.get(i));
-			movingViolationsStack.push((VOMovingViolations) list2.get(i));
-
-		}
 	}
-
-
-
 
 	public IQueue <VODaylyStatistic> getDailyStatistics () {
 
