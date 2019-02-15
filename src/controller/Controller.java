@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.FileReader;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -14,8 +15,6 @@ import model.data_structures.IQueue;
 import model.data_structures.IStack;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
-import model.vo.VODaylyStatistic;
-import model.vo.VOMovingViolations;
 import view.MovingViolationsManagerView;
 
 import com.opencsv.CSVReader;
