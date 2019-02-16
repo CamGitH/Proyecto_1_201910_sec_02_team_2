@@ -15,6 +15,7 @@ import model.data_structures.IQueue;
 import model.data_structures.IStack;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
+import model.moving_violations.VOMovingViolations;
 import view.MovingViolationsManagerView;
 
 import com.opencsv.CSVReader;
@@ -59,15 +60,10 @@ public class Controller {
 			switch(option)
 			{
 			case 1:
-				this.loadMovingViolations();
+				this.loadMovingViolations1();
 				break;
 
 			case 2:
-				IQueue<VODaylyStatistic> dailyStatistics = this.getDailyStatistics();
-				view.printDailyStatistics(dailyStatistics);
-				break;
-
-			case 3:
 				view.printMensage("Ingrese el número de infracciones a buscar");
 				int n = sc.nextInt();
 
@@ -75,7 +71,7 @@ public class Controller {
 				view.printMovingViolations(violations);
 				break;
 
-			case 4:	
+			case 3:	
 				fin=true;
 				sc.close();
 				break;
@@ -84,83 +80,139 @@ public class Controller {
 	}
 
 
-	@SuppressWarnings("unchecked")
-	public void loadMovingViolations() {
+	public void loadMovingViolations1() {
 
-		List<String[]> list1 = new ArrayList();
-		List<String[]> list2 = new ArrayList();
+		List<String[]> list = new ArrayList<String[]>();
 
 		CSVReader reader =null;
-		CSVReader reader2=null;
-
 
 		try{
 
-			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_January_2018_ordered.csv")).withSkipLines(1).build();
-			
-			list1 = reader.readAll();
-			
-			
-			
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_January_2018.csv")).withSkipLines(1).build();
 
-				for(int i = 0;i<list1.size();i++){
-					movingViolationsQueue.enqueue(new VOMovingViolations(Integer.parseInt(list1.get(i)[0]), Integer.parseInt(list1.get(i)[1]), list1.get(i)[2], Integer.parseInt(list1.get(i)[3]), Integer.parseInt(list1.get(i)[4]), Integer.parseInt(list1.get(i)[5]), Integer.parseInt(list1.get(i)[6]), list1.get(i)[7],
-							Integer.parseInt(list1.get(i)[8]), Integer.parseInt(list1.get(i)[9]), Integer.parseInt(list1.get(i)[10]), Integer.parseInt(list1.get(i)[11]), list1.get(i)[12], list1.get(i)[13], Integer.parseInt(list1.get(i)[14]), Integer.parseInt(list1.get(i)[15]),list1.get(i)[16]));
-				}
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
 
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_February_2018.csv")).withSkipLines(1).build();
+			
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+			
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_March_2018.csv")).withSkipLines(1).build();
 
-				reader2=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_January_2018_ordered.csv")).withSkipLines(1).build();
-				
-				list2 = reader.readAll();
-				
-				
-				
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+			
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_April_2018.csv")).withSkipLines(1).build();
 
-					for(int i = 0;i<list2.size();i++){
-						movingViolationsQueue.enqueue(new VOMovingViolations(Integer.parseInt(list2.get(i)[0]), Integer.parseInt(list2.get(i)[1]), list2.get(i)[2], Integer.parseInt(list2.get(i)[3]), Integer.parseInt(list2.get(i)[4]), Integer.parseInt(list2.get(i)[5]), Integer.parseInt(list2.get(i)[6]), list2.get(i)[7],
-								Integer.parseInt(list2.get(i)[8]), Integer.parseInt(list2.get(i)[9]), Integer.parseInt(list2.get(i)[10]), Integer.parseInt(list2.get(i)[11]), list2.get(i)[12], list2.get(i)[13], Integer.parseInt(list2.get(i)[14]), Integer.parseInt(list2.get(i)[15]),list2.get(i)[16]));
-					}
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
 
 
 		}catch( Exception e){
+			
 			e.printStackTrace();
 
 		}
 
 	}
+	
+	public void loadMovingViolations2() {
 
-	public IQueue <VODaylyStatistic> getDailyStatistics () {
+		List<String[]> list = new ArrayList<String[]>();
 
+		CSVReader reader =null;
 
-		VOMovingViolations actual = movingViolationsQueue.dequeue();
-		Queue<VODaylyStatistic> cola = new Queue<>();
-		while( actual != null )
-		{
+		try{
 
-			String fecha = actual.getTICKETISSUEDATE();
-			int numeroAccidentes = 0;
-			int numeroInfracciones = 0;
-			int sumaFineATM = 0;
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_May_2018.csv")).withSkipLines(1).build();
+
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_June_2018.csv")).withSkipLines(1).build();
 			
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
 			
-			while(actual.getTICKETISSUEDATE().equals(fecha)){
-				if(!(actual.getACCIDENTINDICATOR().contains("No"))){
-					numeroAccidentes++;
-				}
-				if(actual.getVIOLATIONCODE()!=0){
-					numeroInfracciones++;
-				}
-				sumaFineATM+=actual.getFINEAMT();
-				actual = movingViolationsQueue.dequeue();
-			}
-			//TODO agregar a la lista 
-			VODaylyStatistic stat = new VODaylyStatistic(fecha, numeroAccidentes, numeroInfracciones, sumaFineATM);
-			cola.enqueue(stat);
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_July_2018.csv")).withSkipLines(1).build();
+
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
 			
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_August_2018.csv")).withSkipLines(1).build();
+
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+
+
+		}catch( Exception e){
+			
+			e.printStackTrace();
+
 		}
-		return cola;
-	}
 
+	}
+	
+	public void loadMovingViolations3() {
+
+		List<String[]> list = new ArrayList<String[]>();
+
+		CSVReader reader =null;
+
+		try{
+
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_September_2018.csv")).withSkipLines(1).build();
+
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_October_2018.csv")).withSkipLines(1).build();
+			
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+			
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_November_2018.csv")).withSkipLines(1).build();
+
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+			
+			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_December_2018.csv")).withSkipLines(1).build();
+
+			list = reader.readAll();
+			readFiles(list);
+			list.clear();
+
+
+		}catch( Exception e){
+			
+			e.printStackTrace();
+
+		}
+
+	}
+	
+	public void readFiles(List<String[]> list){
+		
+
+		for(int i = 0;i<list.size();i++){
+			
+			movingViolationsStack.push(new VOMovingViolations(Integer.parseInt(list.get(i)[0]), Integer.parseInt(list.get(i)[1]), list.get(i)[2], Integer.parseInt(list.get(i)[3]), Integer.parseInt(list.get(i)[4]), Integer.parseInt(list.get(i)[5]), Integer.parseInt(list.get(i)[6]), list.get(i)[7],
+					Integer.parseInt(list.get(i)[8]), Integer.parseInt(list.get(i)[9]), Integer.parseInt(list.get(i)[10]), Integer.parseInt(list.get(i)[11]), list.get(i)[12], list.get(i)[13], Integer.parseInt(list.get(i)[14]), Integer.parseInt(list.get(i)[15]),list.get(i)[16]));
+		}
+	}
+	
 
 	public IStack <VOMovingViolations> nLastAccidents(int nAccidentes) {
 		Stack<VOMovingViolations> pila = new Stack<>();

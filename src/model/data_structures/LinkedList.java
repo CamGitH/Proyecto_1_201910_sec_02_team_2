@@ -77,8 +77,8 @@ public class LinkedList<T> implements ILinkedList<T>{
 			ultimo=null;
 		}
 		else{
-			((Nodo<T>) ultimo).darAnterior().cambiarSiguiente(null);
-			ultimo=(T) ((Nodo<T>) ultimo).darAnterior();
+			ultimo.darAnterior().cambiarSiguiente(null);
+			ultimo= ultimo.darAnterior();
 			tamano --;
 		}
 	}

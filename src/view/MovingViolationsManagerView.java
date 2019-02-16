@@ -1,9 +1,10 @@
 package view;
 
 import model.data_structures.IQueue;
+
 import model.data_structures.IStack;
-import model.vo.VODaylyStatistic;
-import model.vo.VOMovingViolations;
+import model.moving_violations.VOMovingViolations;
+
 
 public class MovingViolationsManagerView 
 {
@@ -22,14 +23,6 @@ public class MovingViolationsManagerView
 		
 	}
 	
-	public void printDailyStatistics(IQueue<VODaylyStatistic> dailyStatistics) {
-		System.out.println("Se encontraron "+ dailyStatistics.size() + " elementos");
-		for (VODaylyStatistic dayStatistic : dailyStatistics) 
-		{
-			//TODO
-			System.out.println("2018-01-01 - accidentes:	100,	infracciones:	200,	multas totales:	$10,000  " );;
-		}
-	}
 	
 	public void printMovingViolations(IStack<VOMovingViolations> violations) {
 		System.out.println("Se encontraron "+ violations.size() + " elementos");
