@@ -32,13 +32,15 @@ public class Controller {
 	 */
 	
 	private IStack<VOMovingViolations> movingViolationsStack;
+	private IQueue<VOMovingViolations> movingViolationsQueue;
 
 
 	public Controller() {
 		
 		view = new MovingViolationsManagerView();
 		
-		movingViolationsStack = new Stack();
+		movingViolationsStack = new Stack<>();
+		movingViolationsQueue = new Queue<>();
 
 	}
 
@@ -66,7 +68,7 @@ public class Controller {
 			case 4:
 				view.printMensage("Estos son los datos, si ya los cargo:");
 				
-				view.printMovingViolations(movingViolationsStack);
+				view.printMovingViolations(movingViolationsQueue);
 				break;
 
 			case 5:	
@@ -208,7 +210,7 @@ public class Controller {
 			
 		
 			
-			movingViolationsStack.push(new VOMovingViolations(0, list.get(i)[1], list.get(i)[2], 0, 0, 0, 0, list.get(i)[7],
+			movingViolationsQueue.enqueue(new VOMovingViolations(0, list.get(i)[1], list.get(i)[2], 0, 0, 0, 0, list.get(i)[7],
 					0, 0, 0, 0, list.get(i)[12], list.get(i)[13], 0, 0,list.get(i)[16]));
 			
 		}

@@ -25,11 +25,11 @@ public class MovingViolationsManagerView
 	}
 	
 	
-	public void printMovingViolations(IStack<VOMovingViolations> violations) {
+	public void printMovingViolations(IQueue<VOMovingViolations> violations) {
 		System.out.println("Se encontraron "+ violations.size() + " elementos");
 		while(violations.size()!=0)
 		{
-			VOMovingViolations actual = violations.pop();
+			VOMovingViolations actual = violations.dequeue();
 			System.out.println(actual.getOBJECTID() + " " 
 								+ actual.getTICKETISSUEDATE() + " " 
 								+ actual.getLOCATION()+ " " 
