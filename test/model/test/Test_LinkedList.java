@@ -7,54 +7,37 @@ import model.data_structures.Nodo;
 import model.data_structures.Stack;
 import model.moving_violations.VOMovingViolations;
 
-public class Test_LinkedList<T> extends TestCase {
+public class Test_LinkedList extends TestCase {
 
 	
-    private LinkedList<T> listaEncadenada;
+    private LinkedList<String> listaEncadenada;
     
-
-    private void escenario1( )
+   
+    private void escenario1()
     {
-        
-    }
-    /**
-     * Agrega algunos nodos a la lista para realizar las pruebas
-     */
-    private void escenario2()
-    {
-    	escenario1();
-    	VOMovingViolations violacion1 = new VOMovingViolations(1, 10, "calle1", 111, 101, 101010, 010101, "tipo1", 1000, 100, 0, 0, "Yes", "date1", 0, 0, "v1");
-    	VOMovingViolations violacion2 = new VOMovingViolations(2, 20, "calle2", 222, 202, 202020, 020202, "tipo2", 2000, 200, 0, 0, "Yes", "date2", 0, 0, "v1");
-    	VOMovingViolations violacion3 = new VOMovingViolations(3, 30, "calle3", 333, 303, 303030, 030303, "tipo3", 3000, 300, 0, 0, "No", "date3", 0, 0, "v1");
+    	listaEncadenada = new LinkedList<String>();
     	
-//    	listaEncadenada.agregarFinal(violacion1);
-//    	
-//    	listaEncadenada.agregarFinal(violacion2);
-//    	
-//    	listaEncadenada.agregarFinal(violacion3);
+		
     }
     
 
 
     public void testAgregarNodo( )
     {
-//        escenario2( );
-//        Nodo <T >nodoPrueba = listaEncadenada.darPrimero();
-//        assertEquals( "El nodo no se agrego", nodoPrueba, nodo1 );
-//        
-//        Nodo <T >nodoPrueba2 = listaEncadenada.darUltimo();
-//        assertEquals( "El nodo no se agrego", nodoPrueba2, nodo3 );
-//        
-//        Nodo <T >nodoPrueba3 = listaEncadenada.darPrimero().darSiguiente();
-//        assertEquals( "El nodo no se agrego", nodoPrueba3, nodo2 );
-//        
-        
-       
+
+        escenario1();
+        listaEncadenada.agregarIni("n1");
+    	listaEncadenada.agregarIni("n2");
+    	listaEncadenada.agregarIni("n3");
+    	
+    	assertEquals( "no agrego bien el elemento", "n1", listaEncadenada.darPrimero() );
+    	assertEquals( "no agrego bien el elemento", "n3", listaEncadenada.darUltimo() );
+    	assertEquals( "no agrego bien el elemento", "n2", listaEncadenada.darPrimero() );
     }
 
 
     public void testEliminarNodo(){
-    	escenario2( );
+    	escenario1( );
     	try {
 			listaEncadenada.eliminarUltimo();
 			listaEncadenada.eliminarUltimo();
@@ -70,13 +53,10 @@ public class Test_LinkedList<T> extends TestCase {
     
     public void testConsultarTamano(){
     	
-    	escenario2();
+    	escenario1();
     	assertEquals( "El tamaño de la lista es incorrecto", 3, listaEncadenada.getSize().intValue() );
     }
     
-    public void recuperarObjetoPosicion(){
-    	
-    }
     
     public void crearLista(){
     	
@@ -84,12 +64,14 @@ public class Test_LinkedList<T> extends TestCase {
     	 assertNotNull( "La lista se debio crear", listaEncadenada );
     }
     
-    public void darSiguienteNodo(){
-    	
+    public void darUltimo(){
+    	escenario1();
+    	assertEquals( "El ultimo es incorrecto", "n3", listaEncadenada.darUltimo() );
     }
     
-    public void darAnteriorNodo(){
-    	
+    public void darPrimero(){
+    	escenario1();
+    	assertEquals( "El primero es incorrecto", "n1", listaEncadenada.darPrimero() );
     }
   
    
