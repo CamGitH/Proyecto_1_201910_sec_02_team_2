@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class Stack<T> implements IStack<T> {
 
-	private Nodo<T> ultimo;
+	private Nodo<T> primero;
 	private int tamano=0;
 
 	/**
@@ -13,7 +13,7 @@ public class Stack<T> implements IStack<T> {
 	 */
 	public Stack( )
 	{
-		ultimo = null;
+		primero = null;
 		tamano = 0;
 	}
 
@@ -36,30 +36,44 @@ public class Stack<T> implements IStack<T> {
 
 	/**
 	 * Inserta un nuevo elemento en la Pila
-	 * @param t el nuevo elemento que se va ha agregar
+	 * @param elemento el nuevo elemento que se va ha agregar
 	 */
-	public void push(T t){
-		Nodo<T> n = new Nodo<T>(t);
-		n.cambiarAnterior(ultimo);
-		if(ultimo==null){
-			ultimo=n;
+	public void push(T elemento){
+		Nodo<T> n = new Nodo<T>(elemento);
+		n.cambiarAnterior(primero);
+		if(primero==null){
+			primero=n;
 		}
 		else{
-			ultimo.cambiarSiguiente(n);
-			ultimo= n;
+			primero.cambiarSiguiente(n);
+			primero= n;
 		}
+		tamano++;
 	}
 
 	/**
 	 * Quita y retorna el elemento agregado más recientemente
 	 * @return el elemento agregado más recientemente
+	 * @throws Exception 
 	 */
 	public T pop(){
-		Nodo<T> ret = ultimo;
-		ultimo=ultimo.darSiguiente();
-		ultimo.cambiarAnterior(null);;
+		if(size()==0){
+			try {
+				throw new Exception("la pila esta vacia");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		Nodo<T> nodo = primero;
+		if(primero.darSiguiente()==null){
+			primero=null;
+			tamano=0;
+		}
+		else{
+		primero=primero.darSiguiente();
 		tamano--;
-		return ret.darElemento();
+		}
+		return nodo.darElemento();
 	}
 
 

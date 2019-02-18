@@ -27,12 +27,13 @@ public class MovingViolationsManagerView
 	
 	public void printMovingViolations(IStack<VOMovingViolations> violations) {
 		System.out.println("Se encontraron "+ violations.size() + " elementos");
-		for (VOMovingViolations violation : violations) 
+		while(violations.size()!=0)
 		{
-			System.out.println(violation.getOBJECTID() + " " 
-								+ violation.getTICKETISSUEDATE() + " " 
-								+ violation.getLOCATION()+ " " 
-								+ violation.getVIOLATIONCODE());
+			VOMovingViolations actual = violations.pop();
+			System.out.println(actual.getOBJECTID() + " " 
+								+ actual.getTICKETISSUEDATE() + " " 
+								+ actual.getLOCATION()+ " " 
+								+ actual.getVIOLATIONCODE());
 		}
 	}
 	

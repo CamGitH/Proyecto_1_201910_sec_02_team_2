@@ -210,6 +210,7 @@ public class Controller {
 			
 			movingViolationsStack.push(new VOMovingViolations(0, list.get(i)[1], list.get(i)[2], 0, 0, 0, 0, list.get(i)[7],
 					0, 0, 0, 0, list.get(i)[12], list.get(i)[13], 0, 0,list.get(i)[16]));
+			
 		}
 	}
 	
