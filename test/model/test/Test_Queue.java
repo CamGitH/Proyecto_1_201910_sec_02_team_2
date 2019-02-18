@@ -10,31 +10,30 @@ import junit.framework.TestCase;
 public class Test_Queue extends TestCase{
 
 	private model.data_structures.Queue<String> q;
-	
-	
+
+
 	public void setUp() {
 		q = new model.data_structures.Queue<String>();
-		
+
 		System.out.println("Codigo de iniciacion");
 		System.out.println("prueba");
 	}
-	
-	
+
+
 	public void test() {
-		
+
 		q.enqueue("n1");
 		q.enqueue("n2");
 		q.enqueue("n3");
 		q.enqueue("n4");
 		q.enqueue("n");
 		if(q.size()!=5){
-			fail("Error fatal en la clase queue");
+			fail("Error clase");
 		}
 		assertEquals("No funciona el añadido del queue","n",q.getUltimo().darElemento());
 		assertEquals("La extraccion de info no funciona","n1",q.dequeue());
 		assertEquals("No se elimino el primer elemento despues de consultarlos","n2",q.getPrimero().darElemento());
-		
+
 		
 	}
-
 }
