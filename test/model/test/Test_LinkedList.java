@@ -1,6 +1,7 @@
 package model.test;
 
 import junit.framework.TestCase;
+
 import model.data_structures.LinkedList;
 import model.data_structures.Nodo;
 import model.data_structures.Stack;

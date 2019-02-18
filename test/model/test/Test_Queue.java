@@ -1,23 +1,19 @@
 package model.test;
 
 
-
-
-
-
-
 import java.util.Queue;
+
 
 import junit.framework.TestCase;
 
 
 public class Test_Queue extends TestCase{
 
-	private Queue<String> q;
+	private model.data_structures.Queue<String> q;
 	
 	
 	public void setUp() {
-		q = new Queue<String>();
+		q = new model.data_structures.Queue<String>();
 		
 		System.out.println("Codigo de iniciacion");
 		System.out.println("prueba");
