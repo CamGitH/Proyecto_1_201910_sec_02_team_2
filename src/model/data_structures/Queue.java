@@ -12,14 +12,14 @@ public class Queue<T> implements IQueue<T> {
 	 * Retorna true si la Cola esta vacia
 	 * @return true si la Cola esta vacia, false de lo contrario
 	 */
-	
-	 public Queue( )
-	    {
-	        primero = null;
-	        ultimo = null;
-	        tamano = 0;
-	    }
-	 
+
+	public Queue( )
+	{
+		primero = null;
+		ultimo = null;
+		tamano = 0;
+	}
+
 	public boolean isEmpty(){
 		if (tamano==0){
 			return true;
@@ -43,9 +43,17 @@ public class Queue<T> implements IQueue<T> {
 	 */
 	public void enqueue(T t) {
 		Nodo<T> n = new Nodo<T>(t);
-		n.cambiarSiguiente(ultimo);
-		ultimo.cambiarAnterior(n);
-		ultimo=n;
+		if(isEmpty()){
+			primero=n;
+			ultimo=n;
+		}
+		else{
+			
+			n.cambiarSiguiente(ultimo);
+			ultimo.cambiarAnterior(n);
+			ultimo=n;
+			
+		}
 		tamano++;
 
 	}
@@ -55,8 +63,16 @@ public class Queue<T> implements IQueue<T> {
 	 */
 	public T dequeue(){
 		Nodo<T> ret = primero;
-		primero=primero.darAnterior();
-		primero.cambiarSiguiente(null);
+
+		if(size()==1){
+			primero=null;
+			ultimo=null;
+		}
+		else{
+			primero=primero.darAnterior();
+			primero.cambiarSiguiente(null);
+			
+		}
 		tamano--;
 		return ret.darElemento();
 	}
@@ -81,5 +97,5 @@ public class Queue<T> implements IQueue<T> {
 		return ultimo;
 	}
 
-	
+
 }
