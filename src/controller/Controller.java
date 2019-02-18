@@ -28,21 +28,16 @@ public class Controller {
 	private MovingViolationsManagerView view;
 
 	/**
-	 * Cola donde se van a cargar los datos de los archivos
-	 */
-	private IQueue<VOMovingViolations> movingViolationsQueue;
-
-	/**
 	 * Pila donde se van a cargar los datos de los archivos
 	 */
+	
 	private IStack<VOMovingViolations> movingViolationsStack;
 
 
 	public Controller() {
+		
 		view = new MovingViolationsManagerView();
-
-		//TODO, inicializar la pila y la cola
-		movingViolationsQueue = new Queue();
+		
 		movingViolationsStack = new Stack();
 
 	}
@@ -62,16 +57,19 @@ public class Controller {
 			case 1:
 				this.loadMovingViolations1();
 				break;
-
 			case 2:
-				view.printMensage("Ingrese el número de infracciones a buscar");
-				int n = sc.nextInt();
-
-				IStack<VOMovingViolations> violations = this.nLastAccidents(n);
-				view.printMovingViolations(violations);
+				this.loadMovingViolations2();
+				break;
+			case 3:
+				this.loadMovingViolations3();
+				break;
+			case 4:
+				view.printMensage("Estos son los datos, si ya los cargo:");
+				
+				view.printMovingViolations(movingViolationsStack);
 				break;
 
-			case 3:	
+			case 5:	
 				fin=true;
 				sc.close();
 				break;
@@ -118,7 +116,7 @@ public class Controller {
 			e.printStackTrace();
 
 		}
-
+		
 	}
 	
 	public void loadMovingViolations2() {
@@ -208,8 +206,10 @@ public class Controller {
 
 		for(int i = 0;i<list.size();i++){
 			
-			movingViolationsStack.push(new VOMovingViolations(Integer.parseInt(list.get(i)[0]), Integer.parseInt(list.get(i)[1]), list.get(i)[2], Integer.parseInt(list.get(i)[3]), Integer.parseInt(list.get(i)[4]), Integer.parseInt(list.get(i)[5]), Integer.parseInt(list.get(i)[6]), list.get(i)[7],
-					Integer.parseInt(list.get(i)[8]), Integer.parseInt(list.get(i)[9]), Integer.parseInt(list.get(i)[10]), Integer.parseInt(list.get(i)[11]), list.get(i)[12], list.get(i)[13], Integer.parseInt(list.get(i)[14]), Integer.parseInt(list.get(i)[15]),list.get(i)[16]));
+		
+			
+			movingViolationsStack.push(new VOMovingViolations(0, list.get(i)[1], list.get(i)[2], 0, 0, 0, 0, list.get(i)[7],
+					0, 0, 0, 0, list.get(i)[12], list.get(i)[13], 0, 0,list.get(i)[16]));
 		}
 	}
 	

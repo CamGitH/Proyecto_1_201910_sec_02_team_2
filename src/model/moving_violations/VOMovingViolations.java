@@ -10,12 +10,12 @@ public class VOMovingViolations {
 
 
 	private int OBJECTID;
-	private int ROW;
+	private String ROW;
 	private String LOCATION;
 	private int ADDRESS_ID;
 	private int STREETSEG;
-	private int XCOOR;
-	private int YCOOR;
+	private float XCOOR;
+	private float YCOOR;
 	private String TICKETTYPE;
 	private int FINEAMT;
 	private int TOTALPAID;
@@ -36,12 +36,12 @@ public class VOMovingViolations {
 
 
 
-	public VOMovingViolations(int oBJECTID, int rOW, String lOCATION, int aDDRESS_ID, int sTREETSEG, int xCOOR,
-			int yCOOR, String tICKETTYPE, int fINEAMT, int tOTALPAID, int pENALTY1, int pENALTY2,
+	public VOMovingViolations(int oBJECTID, String string, String lOCATION, int aDDRESS_ID, int sTREETSEG, float xCOOR,
+			float yCOOR, String tICKETTYPE, int fINEAMT, int tOTALPAID, int pENALTY1, int pENALTY2,
 			String aCCIDENTINDICATOR, String tICKETISSUEDATE, int vIOLATIONCODE, int vIOLATIONDESC, String rOW_ID) {
 		super();
 		OBJECTID = oBJECTID;
-		ROW = rOW;
+		ROW = string;
 		LOCATION = lOCATION;
 		ADDRESS_ID = aDDRESS_ID;
 		STREETSEG = sTREETSEG;
@@ -220,7 +220,7 @@ public class VOMovingViolations {
 	/**
 	 * @return the rOW
 	 */
-	public int getROW() {
+	public String getROW() {
 		return ROW;
 	}
 
@@ -231,7 +231,7 @@ public class VOMovingViolations {
 	/**
 	 * @param rOW the rOW to set
 	 */
-	public void setROW(int rOW) {
+	public void setROW(String rOW) {
 		ROW = rOW;
 	}
 
@@ -396,7 +396,7 @@ public class VOMovingViolations {
 	/**
 	 * @return the xCOOR
 	 */
-	public int getXCOOR() {
+	public float getXCOOR() {
 		return XCOOR;
 	}
 
@@ -407,7 +407,7 @@ public class VOMovingViolations {
 	/**
 	 * @param xCOOR the xCOOR to set
 	 */
-	public void setXCOOR(int xCOOR) {
+	public void setXCOOR(float xCOOR) {
 		XCOOR = xCOOR;
 	}
 
@@ -418,7 +418,7 @@ public class VOMovingViolations {
 	/**
 	 * @return the yCOOR
 	 */
-	public int getYCOOR() {
+	public float getYCOOR() {
 		return YCOOR;
 	}
 
@@ -429,7 +429,7 @@ public class VOMovingViolations {
 	/**
 	 * @param yCOOR the yCOOR to set
 	 */
-	public void setYCOOR(int yCOOR) {
+	public void setYCOOR(float yCOOR) {
 		YCOOR = yCOOR;
 	}
 

@@ -1,9 +1,14 @@
 package main;
 
+import controller.Controller;
+
 public class MVC_main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Controller controller = new Controller();
+		
+		controller.run();
 
 	}
 

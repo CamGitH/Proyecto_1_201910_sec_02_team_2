@@ -41,8 +41,13 @@ public class Stack<T> implements IStack<T> {
 	public void push(T t){
 		Nodo<T> n = new Nodo<T>(t);
 		n.cambiarAnterior(ultimo);
-		ultimo.cambiarSiguiente(n);
-		ultimo= n;
+		if(ultimo==null){
+			ultimo=n;
+		}
+		else{
+			ultimo.cambiarSiguiente(n);
+			ultimo= n;
+		}
 	}
 
 	/**

@@ -14,12 +14,13 @@ public class MovingViolationsManagerView
 	
 	public void printMenu() {
 		System.out.println("---------ISIS 1206 - Estructuras de datos----------");
-		System.out.println("---------------------Taller 3----------------------");
-		System.out.println("1. Cree una nueva coleccion de infracciones en movimiento");
-		System.out.println("2. Dar estadisticas diarias de las infracciones");
-		System.out.println("3. Dar ultimos n infracciones que terminaron en accidente");
-		System.out.println("4. Salir");
-		System.out.println("Digite el n�mero de opci�n para ejecutar la tarea, luego presione enter: (Ej., 1):");
+		System.out.println("---------------------Proyecto1----------------------");
+		System.out.println("1. Cargar informacion del 1er cuatrimestre 2018");
+		System.out.println("2. Cargar informacion del 2do cuatrimestre 2018");
+		System.out.println("3. Cargar informacion del 3er cuatrimestre 2018");
+		System.out.println("4. Mostrar datos cargados");
+		System.out.println("5. Salir");
+		System.out.println("Digite el numero de opcionn para ejecutar la tarea, luego presione enter: (Ej., 1):");
 		
 	}
 	
