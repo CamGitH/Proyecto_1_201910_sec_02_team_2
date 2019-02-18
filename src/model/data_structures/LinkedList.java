@@ -31,7 +31,7 @@ public class LinkedList<T> implements ILinkedList<T>{
 
 	public void agregarIni(T nuevo){
 		Nodo<T> nodo = new Nodo<T>(nuevo);
-		if(primero==null){
+		if(tamano==0){
 			primero= nodo;
 			ultimo= nodo;
 			tamano ++;
@@ -39,13 +39,14 @@ public class LinkedList<T> implements ILinkedList<T>{
 		else{
 			nodo.cambiarSiguiente(primero);
 			primero=nodo;
+			primero.darSiguiente().cambiarAnterior(primero);
 			tamano ++;
 		}
 	}
 
 	public void agregarFinal(T nuevo){
 		Nodo<T> nodo = new Nodo<T>(nuevo);
-		if(primero==null){
+		if(tamano==0){
 
 			primero= nodo;
 			ultimo= nodo;
@@ -53,7 +54,9 @@ public class LinkedList<T> implements ILinkedList<T>{
 		}
 		else{
 			ultimo.cambiarSiguiente(nodo);
+			nodo.cambiarAnterior(ultimo);
 			ultimo=nodo;
+			
 			tamano ++;
 		}
 	}
