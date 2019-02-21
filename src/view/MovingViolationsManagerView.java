@@ -30,10 +30,10 @@ public class MovingViolationsManagerView
 		while(violations.size()!=0)
 		{
 			VOMovingViolations actual = violations.dequeue();
-			System.out.println(actual.getOBJECTID() + " " 
-								+ actual.getTICKETISSUEDATE() + " " 
-								+ actual.getLOCATION()+ " " 
-								+ actual.getVIOLATIONCODE());
+			System.out.println(actual.getObjectID() + " " 
+								+ actual.getTicketIssueDate() + " " 
+								+ actual.getLocation()+ " " 
+								+ actual.getViolationCode());
 		}
 	}
 	

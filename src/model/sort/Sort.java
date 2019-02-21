@@ -7,7 +7,9 @@ public class Sort {
 	 * @param datos - conjunto de datos a ordenar (inicio) y conjunto de datos ordenados (final)
 	 */
 	public static void ordenarShellSort( Comparable[ ] datos ) {
-		if (datos.length < 2) break;
+		if (datos.length < 2) {
+			return;
+		}
 		
 		int n;
 		for( int medio = datos.length / 2; medio > 0; medio /= 2 )
