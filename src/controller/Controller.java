@@ -206,12 +206,28 @@ public class Controller {
 	public void readFiles(List<String[]> list){
 		
 
-		for(int i = 0;i<list.size();i++){
+		for(int i = 0;i<list.size()/10;i++){
 			
 		
 			
-			movingViolationsQueue.enqueue(new VOMovingViolations(0, list.get(i)[1], list.get(i)[2], 0, 0, 0, 0, list.get(i)[7],
-					0, 0, 0, 0, list.get(i)[12], list.get(i)[13], 0, 0,list.get(i)[16]));
+			movingViolationsQueue.enqueue(new VOMovingViolations(
+					list.get(i)[0], 
+					list.get(i)[1], 
+					list.get(i)[2], 
+					list.get(i)[3], 
+					list.get(i)[4], 
+					list.get(i)[5], 
+					list.get(i)[6], 
+					list.get(i)[7],
+					list.get(i)[8], 
+					list.get(i)[9],
+					list.get(i)[10], 
+					list.get(i)[11], 
+					list.get(i)[12], 
+					list.get(i)[13], 
+					list.get(i)[14], 
+					list.get(i)[15],
+					list.get(i)[16]));
 			
 		}
 	}

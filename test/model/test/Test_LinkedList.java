@@ -43,7 +43,6 @@ public class Test_LinkedList extends TestCase {
 			listaEncadenada.eliminarUltimo();
 			listaEncadenada.eliminarUltimo();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         assertNull( "El nodo no se elimino", listaEncadenada.darPrimero() );

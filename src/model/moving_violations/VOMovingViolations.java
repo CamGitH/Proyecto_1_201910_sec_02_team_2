@@ -9,429 +9,283 @@ public class VOMovingViolations {
 	//	OBJECTID,ROW_,LOCATION,ADDRESS_ID,STREETSEGID,XCOORD,YCOORD,TICKETTYPE,FINEAMT,TOTALPAID,PENALTY1,PENALTY2,ACCIDENTINDICATOR,TICKETISSUEDATE,VIOLATIONCODE,VIOLATIONDESC,ROW_ID
 
 
-	private int OBJECTID;
-	private String ROW;
-	private String LOCATION;
-	private int ADDRESS_ID;
-	private int STREETSEG;
-	private float XCOOR;
-	private float YCOOR;
-	private String TICKETTYPE;
-	private int FINEAMT;
-	private int TOTALPAID;
-	private int PENALTY1;
-	private int PENALTY2;
-	private String ACCIDENTINDICATOR;
-	private String TICKETISSUEDATE;
-	private int VIOLATIONCODE;
-	private int VIOLATIONDESC;
-	private String ROW_ID;
+	private String objectID;
+	private String row;
+	private String location;
+	private String addressID;
+	private String streetSeg;
+	private String xCoor;
+	private String yCoor;
+	private String ticketType;
+	private String fineAtm;
+	private String totalPaid;
+	private String penalty1;
+	private String penalty2;
+	private String accidentIndicator;
+	private String ticketIssueDate;
+	private String violationCode;
+	private String violationDescription;
+	private String rowID;
 
-
-	
-
-
-
-
-
-
-
-	public VOMovingViolations(int oBJECTID, String string, String lOCATION, int aDDRESS_ID, int sTREETSEG, float xCOOR,
-			float yCOOR, String tICKETTYPE, int fINEAMT, int tOTALPAID, int pENALTY1, int pENALTY2,
-			String aCCIDENTINDICATOR, String tICKETISSUEDATE, int vIOLATIONCODE, int vIOLATIONDESC, String rOW_ID) {
+	public VOMovingViolations(String pObjectID, String pRow, String pLocation, String pAddressID, String pStreetSeg, String pXCoor,
+			String pYCoor, String pTicketType, String pFineAtm, String tOTALPAID, String pPenalty1, String pPenalty2,
+			String pAccidentIndicator, String pTicketIssueDate, String pViolationCode, String pViolationDescription, String pRowID) {
 		super();
-		OBJECTID = oBJECTID;
-		ROW = string;
-		LOCATION = lOCATION;
-		ADDRESS_ID = aDDRESS_ID;
-		STREETSEG = sTREETSEG;
-		XCOOR = xCOOR;
-		YCOOR = yCOOR;
-		TICKETTYPE = tICKETTYPE;
-		FINEAMT = fINEAMT;
-		TOTALPAID = tOTALPAID;
-		PENALTY1 = pENALTY1;
-		PENALTY2 = pENALTY2;
-		ACCIDENTINDICATOR = aCCIDENTINDICATOR;
-		TICKETISSUEDATE = tICKETISSUEDATE;
-		VIOLATIONCODE = vIOLATIONCODE;
-		VIOLATIONDESC = vIOLATIONDESC;
-		ROW_ID = rOW_ID;
+		objectID = pObjectID;
+		row = pRow;
+		location = pLocation;
+		addressID = pAddressID;
+		streetSeg = pStreetSeg;
+		xCoor = pXCoor;
+		yCoor = pYCoor;
+		ticketType = pTicketType;
+		fineAtm = pFineAtm;
+		totalPaid = tOTALPAID;
+		penalty1 = pPenalty1;
+		penalty2 = pPenalty2;
+		accidentIndicator = pAccidentIndicator;
+		ticketIssueDate = pTicketIssueDate;
+		violationCode = pViolationCode;
+		violationDescription = pViolationDescription;
+		rowID = pRowID;
 	}
-
-
-
-
 
 	/**
-	 * @return the aCCIDENTINDICATOR
+	 * @return the objectID
 	 */
-	public String getACCIDENTINDICATOR() {
-		return ACCIDENTINDICATOR;
+	public String getObjectID() {
+		return objectID;
 	}
-
-
-
-
 
 	/**
-	 * @param aCCIDENTINDICATOR the aCCIDENTINDICATOR to set
+	 * @param objectID the objectID to set
 	 */
-	public void setACCIDENTINDICATOR(String aCCIDENTINDICATOR) {
-		ACCIDENTINDICATOR = aCCIDENTINDICATOR;
+	public void setObjectID(String objectID) {
+		this.objectID = objectID;
 	}
-
-
-
-
 
 	/**
-	 * @return the aDDRESS_ID
+	 * @return the row
 	 */
-	public int getADDRESS_ID() {
-		return ADDRESS_ID;
+	public String getRow() {
+		return row;
 	}
-
-
-
-
 
 	/**
-	 * @param aDDRESS_ID the aDDRESS_ID to set
+	 * @param row the row to set
 	 */
-	public void setADDRESS_ID(int aDDRESS_ID) {
-		ADDRESS_ID = aDDRESS_ID;
+	public void setRow(String row) {
+		this.row = row;
 	}
-
-
-
-
 
 	/**
-	 * @return the fINEAMT
+	 * @return the location
 	 */
-	public int getFINEAMT() {
-		return FINEAMT;
+	public String getLocation() {
+		return location;
 	}
-
-
-
-
 
 	/**
-	 * @param fINEAMT the fINEAMT to set
+	 * @param location the location to set
 	 */
-	public void setFINEAMT(int fINEAMT) {
-		FINEAMT = fINEAMT;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-
-
-
-
+	
+	/**
+	 * @return the addressID
+	 */
+	public String getAddressID() {
+		return addressID;
+	}
 
 	/**
-	 * @return the lOCATION
+	 * @param addressID the addressID to set
 	 */
-	public String getLOCATION() {
-		return LOCATION;
+	public void setAddressID(String addressID) {
+		this.addressID = addressID;
 	}
-
-
-
-
 
 	/**
-	 * @param lOCATION the lOCATION to set
+	 * @return the streetSeg
 	 */
-	public void setLOCATION(String lOCATION) {
-		LOCATION = lOCATION;
+	public String getStreetSeg() {
+		return streetSeg;
 	}
-
-
-
-
 
 	/**
-	 * @return the oBJECTID
+	 * @param streetSeg the streetSeg to set
 	 */
-	public int getOBJECTID() {
-		return OBJECTID;
+	public void setStreetSeg(String streetSeg) {
+		this.streetSeg = streetSeg;
 	}
-
-
-
-
 
 	/**
-	 * @param oBJECTID the oBJECTID to set
+	 * @return the xCoor
 	 */
-	public void setOBJECTID(int oBJECTID) {
-		OBJECTID = oBJECTID;
+	public String getxCoor() {
+		return xCoor;
 	}
-
-
-
-
 
 	/**
-	 * @return the pENALTY1
+	 * @param xCoor the xCoor to set
 	 */
-	public int getPENALTY1() {
-		return PENALTY1;
+	public void setxCoor(String xCoor) {
+		this.xCoor = xCoor;
 	}
-
-
-
-
 
 	/**
-	 * @param pENALTY1 the pENALTY1 to set
+	 * @return the yCoor
 	 */
-	public void setPENALTY1(int pENALTY1) {
-		PENALTY1 = pENALTY1;
+	public String getyCoor() {
+		return yCoor;
 	}
-
-
-
-
 
 	/**
-	 * @return the pENALTY2
+	 * @param yCoor the yCoor to set
 	 */
-	public int getPENALTY2() {
-		return PENALTY2;
+	public void setyCoor(String yCoor) {
+		this.yCoor = yCoor;
 	}
-
-
-
-
 
 	/**
-	 * @param pENALTY2 the pENALTY2 to set
+	 * @return the ticketType
 	 */
-	public void setPENALTY2(int pENALTY2) {
-		PENALTY2 = pENALTY2;
+	public String getTicketType() {
+		return ticketType;
 	}
-
-
-
-
 
 	/**
-	 * @return the rOW
+	 * @param ticketType the ticketType to set
 	 */
-	public String getROW() {
-		return ROW;
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
 	}
-
-
-
-
 
 	/**
-	 * @param rOW the rOW to set
+	 * @return the fineAtm
 	 */
-	public void setROW(String rOW) {
-		ROW = rOW;
+	public String getFineAtm() {
+		return fineAtm;
 	}
-
-
-
-
 
 	/**
-	 * @return the rOW_ID
+	 * @param fineAtm the fineAtm to set
 	 */
-	public String getROW_ID() {
-		return ROW_ID;
+	public void setFineAtm(String fineAtm) {
+		this.fineAtm = fineAtm;
 	}
-
-
-
-
 
 	/**
-	 * @param rOW_ID the rOW_ID to set
+	 * @return the totalPaid
 	 */
-	public void setROW_ID(String rOW_ID) {
-		ROW_ID = rOW_ID;
+	public String getTotalPaid() {
+		return totalPaid;
 	}
-
-
-
-
 
 	/**
-	 * @return the sTREETSEG
+	 * @param totalPaid the totalPaid to set
 	 */
-	public int getSTREETSEG() {
-		return STREETSEG;
+	public void setTotalPaid(String totalPaid) {
+		this.totalPaid = totalPaid;
 	}
-
-
-
-
 
 	/**
-	 * @param sTREETSEG the sTREETSEG to set
+	 * @return the penalty1
 	 */
-	public void setSTREETSEG(int sTREETSEG) {
-		STREETSEG = sTREETSEG;
+	public String getPenalty1() {
+		return penalty1;
 	}
-
-
-
-
 
 	/**
-	 * @return the tICKETISSUEDATE
+	 * @param penalty1 the penalty1 to set
 	 */
-	public String getTICKETISSUEDATE() {
-		return TICKETISSUEDATE;
+	public void setPenalty1(String penalty1) {
+		this.penalty1 = penalty1;
 	}
-
-
-
-
 
 	/**
-	 * @param tICKETISSUEDATE the tICKETISSUEDATE to set
+	 * @return the penalty2
 	 */
-	public void setTICKETISSUEDATE(String tICKETISSUEDATE) {
-		TICKETISSUEDATE = tICKETISSUEDATE;
+	public String getPenalty2() {
+		return penalty2;
 	}
-
-
-
-
 
 	/**
-	 * @return the tICKETTYPE
+	 * @param penalty2 the penalty2 to set
 	 */
-	public String getTICKETTYPE() {
-		return TICKETTYPE;
+	public void setPenalty2(String penalty2) {
+		this.penalty2 = penalty2;
 	}
-
-
-
-
 
 	/**
-	 * @param tICKETTYPE the tICKETTYPE to set
+	 * @return the accidentIndicator
 	 */
-	public void setTICKETTYPE(String tICKETTYPE) {
-		TICKETTYPE = tICKETTYPE;
+	public String getAccidentIndicator() {
+		return accidentIndicator;
 	}
-
-
-
-
 
 	/**
-	 * @return the tOTALPAID
+	 * @param accidentIndicator the accidentIndicator to set
 	 */
-	public int getTOTALPAID() {
-		return TOTALPAID;
+	public void setAccidentIndicator(String accidentIndicator) {
+		this.accidentIndicator = accidentIndicator;
 	}
-
-
-
-
 
 	/**
-	 * @param tOTALPAID the tOTALPAID to set
+	 * @return the ticketIssueDate
 	 */
-	public void setTOTALPAID(int tOTALPAID) {
-		TOTALPAID = tOTALPAID;
+	public String getTicketIssueDate() {
+		return ticketIssueDate;
 	}
-
-
-
-
 
 	/**
-	 * @return the vIOLATIONCODE
+	 * @param ticketIssueDate the ticketIssueDate to set
 	 */
-	public int getVIOLATIONCODE() {
-		return VIOLATIONCODE;
+	public void setTicketIssueDate(String ticketIssueDate) {
+		this.ticketIssueDate = ticketIssueDate;
 	}
-
-
-
-
 
 	/**
-	 * @param vIOLATIONCODE the vIOLATIONCODE to set
+	 * @return the violationCode
 	 */
-	public void setVIOLATIONCODE(int vIOLATIONCODE) {
-		VIOLATIONCODE = vIOLATIONCODE;
+	public String getViolationCode() {
+		return violationCode;
 	}
-
-
-
-
 
 	/**
-	 * @return the vIOLATIONDESC
+	 * @param violationCode the violationCode to set
 	 */
-	public int getVIOLATIONDESC() {
-		return VIOLATIONDESC;
+	public void setViolationCode(String violationCode) {
+		this.violationCode = violationCode;
 	}
-
-
-
-
 
 	/**
-	 * @param vIOLATIONDESC the vIOLATIONDESC to set
+	 * @return the violationDescription
 	 */
-	public void setVIOLATIONDESC(int vIOLATIONDESC) {
-		VIOLATIONDESC = vIOLATIONDESC;
+	public String getViolationDescription() {
+		return violationDescription;
 	}
-
-
-
-
 
 	/**
-	 * @return the xCOOR
+	 * @param violationDescription the violationDescription to set
 	 */
-	public float getXCOOR() {
-		return XCOOR;
+	public void setViolationDescription(String violationDescription) {
+		this.violationDescription = violationDescription;
 	}
-
-
-
-
 
 	/**
-	 * @param xCOOR the xCOOR to set
+	 * @return the rowID
 	 */
-	public void setXCOOR(float xCOOR) {
-		XCOOR = xCOOR;
+	public String getRowID() {
+		return rowID;
 	}
-
-
-
-
-
+	
 	/**
-	 * @return the yCOOR
+	 * @param rowID the rowID to set
 	 */
-	public float getYCOOR() {
-		return YCOOR;
+	public void setRowID(String rowID) {
+		this.rowID = rowID;
 	}
-
-
-
-
-
-	/**
-	 * @param yCOOR the yCOOR to set
-	 */
-	public void setYCOOR(float yCOOR) {
-		YCOOR = yCOOR;
-	}
-
 
 }

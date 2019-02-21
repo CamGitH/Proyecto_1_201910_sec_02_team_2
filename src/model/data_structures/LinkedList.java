@@ -63,7 +63,6 @@ public class LinkedList<T> implements ILinkedList<T>{
 
 
 	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
