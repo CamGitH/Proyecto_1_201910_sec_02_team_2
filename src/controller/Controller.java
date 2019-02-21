@@ -30,15 +30,15 @@ public class Controller {
 	/**
 	 * Pila donde se van a cargar los datos de los archivos
 	 */
-	
+
 	private IStack<VOMovingViolations> movingViolationsStack;
 	private IQueue<VOMovingViolations> movingViolationsQueue;
 
 
 	public Controller() {
-		
+
 		view = new MovingViolationsManagerView();
-		
+
 		movingViolationsStack = new Stack<>();
 		movingViolationsQueue = new Queue<>();
 
@@ -67,7 +67,7 @@ public class Controller {
 				break;
 			case 4:
 				view.printMensage("Estos son los datos, si ya los cargo:");
-				
+
 				view.printMovingViolations(movingViolationsQueue);
 				break;
 
@@ -95,17 +95,17 @@ public class Controller {
 			list.clear();
 
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_February_2018.csv")).withSkipLines(1).build();
-			
+
 			list = reader.readAll();
 			readFiles(list);
 			list.clear();
-			
+
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_March_2018.csv")).withSkipLines(1).build();
 
 			list = reader.readAll();
 			readFiles(list);
 			list.clear();
-			
+
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_April_2018.csv")).withSkipLines(1).build();
 
 			list = reader.readAll();
@@ -114,13 +114,13 @@ public class Controller {
 
 
 		}catch( Exception e){
-			
+
 			e.printStackTrace();
 
 		}
-		
+
 	}
-	
+
 	public void loadMovingViolations2() {
 
 		List<String[]> list = new ArrayList<String[]>();
@@ -136,17 +136,17 @@ public class Controller {
 			list.clear();
 
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_June_2018.csv")).withSkipLines(1).build();
-			
+
 			list = reader.readAll();
 			readFiles(list);
 			list.clear();
-			
+
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_July_2018.csv")).withSkipLines(1).build();
 
 			list = reader.readAll();
 			readFiles(list);
 			list.clear();
-			
+
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_August_2018.csv")).withSkipLines(1).build();
 
 			list = reader.readAll();
@@ -155,13 +155,13 @@ public class Controller {
 
 
 		}catch( Exception e){
-			
+
 			e.printStackTrace();
 
 		}
 
 	}
-	
+
 	public void loadMovingViolations3() {
 
 		List<String[]> list = new ArrayList<String[]>();
@@ -177,17 +177,17 @@ public class Controller {
 			list.clear();
 
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_October_2018.csv")).withSkipLines(1).build();
-			
+
 			list = reader.readAll();
 			readFiles(list);
 			list.clear();
-			
+
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_November_2018.csv")).withSkipLines(1).build();
 
 			list = reader.readAll();
 			readFiles(list);
 			list.clear();
-			
+
 			reader=new CSVReaderBuilder(new FileReader("./data/Moving_Violations_Issued_in_December_2018.csv")).withSkipLines(1).build();
 
 			list = reader.readAll();
@@ -196,26 +196,26 @@ public class Controller {
 
 
 		}catch( Exception e){
-			
+
 			e.printStackTrace();
 
 		}
 
 	}
-	
+
 	public void readFiles(List<String[]> list){
-		
+
 
 		for(int i = 0;i<list.size();i++){
-			
-		
-			
+
+
+
 			movingViolationsQueue.enqueue(new VOMovingViolations(0, list.get(i)[1], list.get(i)[2], 0, 0, 0, 0, list.get(i)[7],
 					0, 0, 0, 0, list.get(i)[12], list.get(i)[13], 0, 0,list.get(i)[16]));
-			
+
 		}
 	}
-	
+
 
 	public IStack <VOMovingViolations> nLastAccidents(int nAccidentes) {
 		Stack<VOMovingViolations> pila = new Stack<>();
@@ -224,4 +224,9 @@ public class Controller {
 		}
 		return pila;
 	}
+
+	public VOMovingViolations consultarPor(String ini, String fin){
+		
+	}
+
 }
