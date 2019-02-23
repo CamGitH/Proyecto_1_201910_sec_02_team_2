@@ -203,13 +203,13 @@ public class Controller {
 
 	}
 
-public void readFiles(List<String[]> list){
-		
+	public void readFiles(List<String[]> list){
+
 
 		for(int i = 0;i<list.size()/10;i++){
-			
-		
-			
+
+
+
 			movingViolationsQueue.enqueue(new VOMovingViolations(
 					list.get(i)[0], 
 					list.get(i)[1], 
@@ -228,7 +228,7 @@ public void readFiles(List<String[]> list){
 					list.get(i)[14], 
 					list.get(i)[15],
 					list.get(i)[16]));
-			
+
 		}
 	}
 
@@ -241,8 +241,43 @@ public void readFiles(List<String[]> list){
 		return pila;
 	}
 
-	public VOMovingViolations consultarPor(String ini, String fin){
-		
+	/*
+	 * consulta los datos entre unas fecha y hora hasta otra
+	 * facha ini  hasta fecha fin
+	 */
+	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
+		//TODO
+	}
+	/*
+	 * consulta las infracciones en una direccion
+	 * direccion
+	 */
+	public VOMovingViolations consultarPorDireccion(String direccion){
+		//TODO
+	}
+	/*
+	 * Consultar infracciones  donde  la  cantidad  pagada (TOTALPAID)
+	 * esta en  un  rango dado.
+	 * 
+	 * pagado min pagado max
+	 * 
+	 * Se  ordenapor  fecha  de  infracción.
+	 */
+	public VOMovingViolations consultarPorRangPagado(String min, String max){
+		//TODO
+	}
+	/*
+	 * Consultar infracciones por hora inicial y hora final, 
+	 * ordenada ascendentemente por VIOLATIONDESC. 
+	 * 
+	 * hora ini hora fin
+	 *
+	 * Para las infracciones resultantes mostrar OBJECTID, TICKETISSUEDAT y VIOLATIONDESC. 
+	 *
+	 * La Vista debe recibir una cola con las infracciones.	
+	 */
+	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
+		//TODO
 	}
 
 }
