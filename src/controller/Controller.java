@@ -7,6 +7,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -260,18 +261,19 @@ public class Controller {
 		}
 
 	
-	public <T> VOMovingViolations busquedaBin(String busca, Comparable[] lista, VOMovingViolations.AddressID l){
-		Sort.ordenarShellSort(lista, l);
+	public VOMovingViolations busquedaBin(String busca, Comparator comparator){
+		generarComparables();
+		Sort.ordenarShellSort(comparables, comparator);
 		int ini = 0;
-		int fin = lista.length;
+		int fin = comparables.length;
 		boolean encontrado=false;
 		VOMovingViolations ret=null;
 		while(!encontrado){
 			int mid=(fin-ini/2)+ini;
-			if(VOMovingViolationslista[mid].AddressID.compareTo(busca)){
+			if(comparables[mid].l.compareTo(busca)){
 				ini=mid;
 			}
-			else if(lista.get(mid)>busca){
+			else if(comparables.get(mid)>busca){
 				fin = mid;
 			}
 			else if (ret == busca){
@@ -420,6 +422,11 @@ public class Controller {
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationCode());
+		boolean fin = true;
+		for(int i = elemto.; 0<comparables.length;i++){
+			VOMovingViolations violacion = (VOMovingViolations) comparables[i];
+		
+		}
 		
 		return "";
 		
