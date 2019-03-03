@@ -268,9 +268,18 @@ public class Controller {
 	 * facha ini  hasta fecha fin
 	 */
 	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO organizar
-		
+		//TODO
+
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.TicketIssueDate());
+
 	}
+
+	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(){
+		return movingViolationsList;
+	}
+} 
 	/*
 	 * consulta las infracciones en una direccion
 	 * direccion
