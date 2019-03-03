@@ -14,6 +14,7 @@ import java.util.Scanner;
 import model.data_structures.IQueue;
 import model.data_structures.IStack;
 import model.data_structures.LinkedList;
+import model.data_structures.Nodo;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
 import model.moving_violations.VOMovingViolations;
@@ -281,51 +282,6 @@ public class Controller {
 	
 	
 	/*
-	 * consulta los datos entre unas fecha y hora hasta otra
-	 * facha ini  hasta fecha fin
-	 */
-	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO
-
-		generarComparables();
-
-		Sort.ordenarShellSort(comparables, new VOMovingViolations.TicketIssueDate());
-
-	}
-
-	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(){
-		
-		generarComparables();
-
-		Sort.ordenarShellSort(comparables, new VOMovingViolations.ObjectID());
-		
-		return movingViolationsList;
-	}
-
-	/*
-	 * consulta las infracciones en una direccion
-	 * direccion
-	 */
-	public VOMovingViolations consultarPorDireccion(String direccion){
-		
-		generarComparables();
-
-		Sort.ordenarShellSort(comparables, new VOMovingViolations.AddressID());
-	}
-	/*
-	 * Consultar infracciones  donde  la  cantidad  pagada (TOTALPAID)
-	 * esta en  un  rango dado.
-	 * 
-	 * pagado min pagado max
-	 * 
-	 * Se  ordenapor  fecha  de  infracción.
-	 */
-	public VOMovingViolations consultarPorRangPagado(String min, String max){
-		generarComparables();
-
-		Sort.ordenarShellSort(comparables, new VOMovingViolations.TotalPaid());
-	}
-	/*
 	 * Consultar infracciones por hora inicial y hora final, 
 	 * ordenada ascendentemente por VIOLATIONDESC. 
 	 * 
@@ -335,9 +291,137 @@ public class Controller {
 	 *
 	 * La Vista debe recibir una cola con las infracciones.	
 	 */
-	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO organizar
-}
+	public Queue<VOMovingViolations> consultarPorFechaHora(String ini, String fin){
+		//TODO
 
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.TicketIssueDate());
+		
+		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
+		
+		return cola;
+		
+
+	}
+
+	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(){
+		
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.ObjectID());
+		
+		LinkedList<VOMovingViolations> lista = new LinkedList<VOMovingViolations>();
+		
+		return lista;
+	}
+	
+	/*
+	 * dado  un  tipo  de  infracción  (VIOLATIONCODE) informar 
+	 * el  (FINEAMT) promedio cuando no hubo accidente y el (FINEAMT) promedio cuando si lo hubo.
+	 */
+	public String fineATMperViolationCode(String direccion){
+		
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationDesc());
+		
+		return "";
+	}
+
+	/*
+	 * Consultar las infracciones en una dirección (ADDRESS_ID) en el rango fecha inicial y fecha final.
+	 * Ordenar descendentemente por STREETSEGID y fecha. Para las infracciones resultantes 
+	 *  mostrar  OBJECTID,  TICKETISSUEDAT, STREETSEGIDy  ADDRESS_ID.
+	 *  La  Vista debe recibir una pila con las infracciones.
+	 */
+	public Stack<VOMovingViolations> consultarPorDireccion(String direccion){
+		
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.StreetSeg());
+		
+		Stack<VOMovingViolations> pila = new Stack<VOMovingViolations>();
+		
+		return pila;
+	}
+	/*
+	 * Consultar los  tipos  de  infracciones  (VIOLATIONCODE) con  su valor  (FINEAMT) promedio 
+	 * en  un  rango  dado. Por cada tipo mostrar suVIOLATIONCODE y el FINEAMT promedio.
+	 * La  Vista  debe  recibir  una  cola  con  los  tiposde  infracciones y  su respectivo FINEAMT promedio.
+	 */
+	public Queue<VOMovingViolations> consultarPorFineATM(String direccion){
+		//TODO
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.AddressID());
+		
+		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
+		
+		return cola;
+	}
+	
+	/*
+	 * Consultar infracciones  donde  la  cantidad  pagada (TOTALPAID) esta en  un  rango dado.
+	 * Se  ordena por  fecha  de  infracción. 
+	 * Para  las  infracciones  resultantes  mostrar OBJECTID,  TICKETISSUEDAT, TOTALPAID.
+	 * Se  debe  poder  seleccionar si  el  resultado  se  retorna descendentemente o 
+	 * ascendentemente por fecha de la infracción.
+	 * La Vista debe recibir una pila con las infracciones.
+	 */
+	public Stack<VOMovingViolations> consultarPorRangPagado(String min, String max, int pOrden){
+		
+		//TODO
+		generarComparables();
+		
+		if( pOrden==0){
+			Sort.ordenarShellSort(comparables, new VOMovingViolations.TotalPaidAscendente());
+		}
+		else if( pOrden==1){
+			Sort.ordenarShellSort(comparables, new VOMovingViolations.TotalPaidDescendente());
+		}
+		
+		Stack<VOMovingViolations> pila = new Stack<VOMovingViolations>();
+		
+		return pila;
+	}
+		
+		
+	
+	
+/*
+ * Consultar infracciones por hora inicial y hora final, ordenada ascendentemente por VIOLATIONDESC. 
+ * Para las infracciones resultantes mostrar OBJECTID, TICKETISSUEDAT y VIOLATIONDESC. 
+ * La Vista debe recibir una cola con las infracciones.
+ */
+	public Queue<VOMovingViolations> consultarPorFechaHoraViolationDesc(String pIni, String pFin){
+		//TODO
+
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationDesc());
+		
+		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
+		
+		return cola;
+		
+
+	}
+	
+	/*
+	 * Dado un tipo de infracción (VIOLATIONCODE) informar el (FINEAMT) promedio y su desviación estándar.
+	 */
+	public String estadisticasViolationCode(String pViolationCode){
+		//TODO
+
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationCode());
+		
+		return "";
+		
+
+	}
+	
 
 }

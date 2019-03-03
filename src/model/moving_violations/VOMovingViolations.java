@@ -313,7 +313,7 @@ public class VOMovingViolations implements Comparable<VOMovingViolations>{
 
 		@Override
 		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
-			return object1.getStreetSeg().compareToIgnoreCase(object2.getStreetSeg());
+			return object2.getStreetSeg().compareToIgnoreCase(object1.getStreetSeg());
 		}
 		
 	}
@@ -327,11 +327,20 @@ public class VOMovingViolations implements Comparable<VOMovingViolations>{
 		
 	}
 	
-	public static class TotalPaid implements Comparator<VOMovingViolations>{
+	public static class TotalPaidAscendente implements Comparator<VOMovingViolations>{
 
 		@Override
 		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
 			return object1.getTotalPaid().compareToIgnoreCase(object2.getTotalPaid());
+		}
+		
+	}
+	
+	public static class TotalPaidDescendente implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object2.getTotalPaid().compareToIgnoreCase(object1.getTotalPaid());
 		}
 		
 	}
@@ -341,6 +350,15 @@ public class VOMovingViolations implements Comparable<VOMovingViolations>{
 		@Override
 		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
 			return object1.getViolationDescription().compareToIgnoreCase(object2.getViolationDescription());
+		}
+		
+	}
+	
+	public static class ViolationCode implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object2.getViolationCode().compareToIgnoreCase(object1.getViolationCode());
 		}
 		
 	}
