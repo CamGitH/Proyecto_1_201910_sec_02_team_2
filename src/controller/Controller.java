@@ -65,12 +65,15 @@ public class Controller {
 			{
 			case 1:
 				this.loadMovingViolations1();
+				view.printMensage("Numero infracciones cargadas:" + movingViolationsList.getSize());
 				break;
 			case 2:
 				this.loadMovingViolations2();
+				view.printMensage("Numero infracciones cargadas:" + movingViolationsList.getSize());
 				break;
 			case 3:
 				this.loadMovingViolations3();
+				view.printMensage("Numero infracciones cargadas:" + movingViolationsList.getSize());
 				break;
 			case 4:
 				view.printMensage("Estos son los datos, si ya los cargo:");
