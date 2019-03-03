@@ -11,7 +11,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-
+import model.data_structures.ArregloDinamico;
+import model.data_structures.IArregloDinamico;
 import model.data_structures.IQueue;
 import model.data_structures.IStack;
 import model.data_structures.LinkedList;
@@ -246,7 +247,7 @@ public class Controller {
 		}
 		return pila;
 	}
-	
+
 	public void generarComparables(){
 		comparables = new Comparable[movingViolationsList.getSize()];
 		Nodo<VOMovingViolations> objeto = movingViolationsList.darPrimero();;
@@ -258,34 +259,34 @@ public class Controller {
 			i++;
 			objeto=objeto.darSiguiente();
 		}
-		}
-
-	
-	public VOMovingViolations busquedaBin(String busca, Comparator comparator){
-		generarComparables();
-		Sort.ordenarShellSort(comparables, comparator);
-		int ini = 0;
-		int fin = comparables.length;
-		boolean encontrado=false;
-		VOMovingViolations ret=null;
-		while(!encontrado){
-			int mid=(fin-ini/2)+ini;
-			if(comparables[mid].l.compareTo(busca)){
-				ini=mid;
-			}
-			else if(comparables.get(mid)>busca){
-				fin = mid;
-			}
-			else if (ret == busca){
-				return ret
-			}
-			else{
-				"NO EXISTE"
-			}
-		}
 	}
-	
-	
+
+
+	//	public VOMovingViolations busquedaBin(String busca, Comparator comparator){
+	//		generarComparables();
+	//		Sort.ordenarShellSort(comparables, comparator);
+	//		int ini = 0;
+	//		int fin = comparables.length;
+	//		boolean encontrado=false;
+	//		VOMovingViolations ret=null;
+	//		while(!encontrado){
+	//			int mid=(fin-ini/2)+ini;
+	//			if(comparables[mid].l.compareTo(busca)){
+	//				ini=mid;
+	//			}
+	//			else if(comparables.get(mid)>busca){
+	//				fin = mid;
+	//			}
+	//			else if (ret == busca){
+	//				return ret
+	//			}
+	//			else{
+	//				"NO EXISTE"
+	//			}
+	//		}
+	//	}
+	//	
+
 	/*
 	 * Consultar infracciones por hora inicial y hora final, 
 	 * ordenada ascendentemente por VIOLATIONDESC. 
@@ -302,36 +303,83 @@ public class Controller {
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.TicketIssueDate());
-		
+
 		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
-		
+
 		return cola;
-		
+
 
 	}
 
-	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(){
-		
+	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(String ObjectID){
+
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.ObjectID());
 		
 		LinkedList<VOMovingViolations> lista = new LinkedList<VOMovingViolations>();
 		
+		for(int i = 0; 0<comparables.length-1;i++){
+			
+			VOMovingViolations violacion = (VOMovingViolations) comparables[i];
+			VOMovingViolations violacion2 = (VOMovingViolations) comparables[i+1];
+			
+			if(violacion.getObjectID().equals(violacion2.getObjectID())){
+				lista.agregarIni(violacion);
+			}
+		}
+
 		return lista;
 	}
-	
+
 	/*
 	 * dado  un  tipo  de  infracción  (VIOLATIONCODE) informar 
 	 * el  (FINEAMT) promedio cuando no hubo accidente y el (FINEAMT) promedio cuando si lo hubo.
 	 */
-	public String fineATMperViolationCode(String direccion){
-		
+	public String fineATMperViolationCode(String pViolationCode){
+
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationDesc());
+
+		double promedioHubo = 0;
+		double promedioNoHubo = 0;
+		int n = 0;
+
+		ArregloDinamico suma = new ArregloDinamico(10);
+		ArregloDinamico suma2 = new ArregloDinamico(10);
+
+		for(int i = 0; 0<comparables.length;i++){
+			VOMovingViolations violacion = (VOMovingViolations) comparables[i];
+			if(violacion.getViolationCode().equals(pViolationCode) && violacion.getAccidentIndicator().contains("no")){
+				suma.agregar(violacion.getFineAtm());
+				n++;
+			}
+			else if(violacion.getViolationCode().equals(pViolationCode) && violacion.getAccidentIndicator().contains("yes")){
+				suma2.agregar(violacion.getFineAtm());
+				n++;
+			}
+			
+			VOMovingViolations violacionSiguiente = (VOMovingViolations) comparables[i+1];
+			if(!violacionSiguiente.getViolationCode().equals(violacion.getViolationCode())){
+				break;
+			}
+
+
+		}
+		for(int i = 0; i<suma.darTamano();i++){
+			promedioHubo += Integer.parseInt(suma.darElemento(i));
+		}
+		promedioHubo /= n;
 		
-		return "";
+		for(int i = 0; i<suma2.darTamano();i++){
+			promedioHubo += Integer.parseInt(suma2.darElemento(i));
+		}
+		promedioNoHubo /= n;
+
+		return "El promedio de FineATM de las infracciones con el codigo "+pViolationCode + 
+				" cuando no hubo infraciones fue de: " + promedioNoHubo
+				+ " y cuado no hubo infracciones fue de "+promedioHubo;
 	}
 
 	/*
@@ -341,13 +389,13 @@ public class Controller {
 	 *  La  Vista debe recibir una pila con las infracciones.
 	 */
 	public Stack<VOMovingViolations> consultarPorDireccion(String direccion){
-		
+
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.StreetSeg());
-		
+
 		Stack<VOMovingViolations> pila = new Stack<VOMovingViolations>();
-		
+
 		return pila;
 	}
 	/*
@@ -360,12 +408,12 @@ public class Controller {
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.AddressID());
-		
+
 		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
-		
+
 		return cola;
 	}
-	
+
 	/*
 	 * Consultar infracciones  donde  la  cantidad  pagada (TOTALPAID) esta en  un  rango dado.
 	 * Se  ordena por  fecha  de  infracción. 
@@ -375,63 +423,86 @@ public class Controller {
 	 * La Vista debe recibir una pila con las infracciones.
 	 */
 	public Stack<VOMovingViolations> consultarPorRangPagado(String min, String max, int pOrden){
-		
+
 		//TODO
 		generarComparables();
-		
+
 		if( pOrden==0){
 			Sort.ordenarShellSort(comparables, new VOMovingViolations.TotalPaidAscendente());
 		}
 		else if( pOrden==1){
 			Sort.ordenarShellSort(comparables, new VOMovingViolations.TotalPaidDescendente());
 		}
-		
+
 		Stack<VOMovingViolations> pila = new Stack<VOMovingViolations>();
-		
+
 		return pila;
 	}
-		
-		
-	
-	
-/*
- * Consultar infracciones por hora inicial y hora final, ordenada ascendentemente por VIOLATIONDESC. 
- * Para las infracciones resultantes mostrar OBJECTID, TICKETISSUEDAT y VIOLATIONDESC. 
- * La Vista debe recibir una cola con las infracciones.
- */
+
+
+
+
+	/*
+	 * Consultar infracciones por hora inicial y hora final, ordenada ascendentemente por VIOLATIONDESC. 
+	 * Para las infracciones resultantes mostrar OBJECTID, TICKETISSUEDAT y VIOLATIONDESC. 
+	 * La Vista debe recibir una cola con las infracciones.
+	 */
 	public Queue<VOMovingViolations> consultarPorFechaHoraViolationDesc(String pIni, String pFin){
 		//TODO
 
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationDesc());
-		
+
 		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
-		
+
 		return cola;
-		
+
 
 	}
-	
+
 	/*
 	 * Dado un tipo de infracción (VIOLATIONCODE) informar el (FINEAMT) promedio y su desviación estándar.
 	 */
 	public String estadisticasViolationCode(String pViolationCode){
-		//TODO
 
 		generarComparables();
-
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.ViolationCode());
-		boolean fin = true;
-		for(int i = elemto.; 0<comparables.length;i++){
+
+		double desviacion = 0;
+		double promedio = 0;
+		int n = 0;
+		ArregloDinamico suma = new ArregloDinamico(10);
+
+		for(int i = 0; 0<comparables.length;i++){
 			VOMovingViolations violacion = (VOMovingViolations) comparables[i];
-		
+			if(violacion.getViolationCode().equals(pViolationCode)){
+				suma.agregar(violacion.getFineAtm());
+				n++;
+				VOMovingViolations violacionsiguiente = (VOMovingViolations) comparables[i+1];
+				if(!violacionsiguiente.getViolationCode().equals(violacion.getViolationCode())){
+					break;
+				}
+			}
+
 		}
-		
-		return "";
-		
+		for(int i = 0; i<suma.darTamano();i++){
+			promedio += Integer.parseInt(suma.darElemento(i));
+		}
+		promedio /= n;
+
+		double temp = 0;
+		for(int i = 0; i<suma.darTamano();i++){
+			temp += (Integer.parseInt(suma.darElemento(i))-promedio)*(Integer.parseInt(suma.darElemento(i))-promedio);
+		}
+		temp/=n;
+
+
+		desviacion=  Math.sqrt(temp);
+
+		return "Fine ATM promedio: "+ promedio +" y tiene "+ desviacion+ " desviacion estandar";
 
 	}
-	
+
 
 }
