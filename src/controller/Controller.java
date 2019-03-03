@@ -241,19 +241,41 @@ public class Controller {
 		return pila;
 	}
 
+	
+	public VOMovingViolations busquedaBin(String busca, List lista){
+		int ini = 0;
+		int fin = lista.size();
+		boolean encontrado=false;
+		VOMovingViolations ret=null;
+		while(!encontrado){
+			int mid=(fin-ini/2)+ini;
+			if(lista.get(mid)<busca){
+				ini=mid;
+			}
+			else if(lista.get(mid)>busca){
+				fin = mid;
+			}
+			else{
+				return ret;
+			}
+		}
+	}
+	
+	
 	/*
 	 * consulta los datos entre unas fecha y hora hasta otra
 	 * facha ini  hasta fecha fin
 	 */
 	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO
+		//TODO organizar
+		
 	}
 	/*
 	 * consulta las infracciones en una direccion
 	 * direccion
 	 */
 	public VOMovingViolations consultarPorDireccion(String direccion){
-		//TODO
+		//TODO organizar
 	}
 	/*
 	 * Consultar infracciones  donde  la  cantidad  pagada (TOTALPAID)
@@ -264,7 +286,7 @@ public class Controller {
 	 * Se  ordenapor  fecha  de  infracción.
 	 */
 	public VOMovingViolations consultarPorRangPagado(String min, String max){
-		//TODO
+		//TODO organizar
 	}
 	/*
 	 * Consultar infracciones por hora inicial y hora final, 
@@ -277,7 +299,7 @@ public class Controller {
 	 * La Vista debe recibir una cola con las infracciones.	
 	 */
 	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO
+		//TODO organizar
 	}
 
 }
