@@ -301,14 +301,21 @@ public class Controller {
 	 * La Vista debe recibir una cola con las infracciones.	
 	 */
 	public Queue<VOMovingViolations> consultarPorFechaHora(String ini, String fin){
-		//TODO
+		boolean ya=false;
 
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.TicketIssueDate());
 
 		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
-
+		for(int i = 0; 0<comparables.length-1 && !ya;i++){
+			VOMovingViolations a = (VOMovingViolations) comparables[i];
+			if(a.getTicketIssueDate().compareTo(ini)==1||a.getTicketIssueDate().compareTo(fin)==-1
+					||a.getTicketIssueDate().compareTo(fin)==0||a.getTicketIssueDate().compareTo(ini)==0){
+						cola.enqueue(a);
+					}
+			if(a.getTicketIssueDate().compareTo(fin)==1){ya;}
+		}
 		return cola;
 
 
@@ -319,14 +326,14 @@ public class Controller {
 		generarComparables();
 
 		Sort.ordenarShellSort(comparables, new VOMovingViolations.ObjectID());
-		
+
 		LinkedList<VOMovingViolations> lista = new LinkedList<VOMovingViolations>();
-		
+
 		for(int i = 0; 0<comparables.length-1;i++){
-			
+
 			VOMovingViolations violacion = (VOMovingViolations) comparables[i];
 			VOMovingViolations violacion2 = (VOMovingViolations) comparables[i+1];
-			
+
 			if(violacion.getObjectID().equals(violacion2.getObjectID())){
 				lista.agregarIni(violacion);
 			}
@@ -362,7 +369,7 @@ public class Controller {
 				suma2.agregar(violacion.getFineAtm());
 				n++;
 			}
-			
+
 			VOMovingViolations violacionSiguiente = (VOMovingViolations) comparables[i+1];
 			if(!violacionSiguiente.getViolationCode().equals(violacion.getViolationCode())){
 				break;
@@ -374,7 +381,7 @@ public class Controller {
 			promedioHubo += Integer.parseInt(suma.darElemento(i));
 		}
 		promedioHubo /= n;
-		
+
 		for(int i = 0; i<suma2.darTamano();i++){
 			promedioHubo += Integer.parseInt(suma2.darElemento(i));
 		}
@@ -450,8 +457,9 @@ public class Controller {
 	 * Para las infracciones resultantes mostrar OBJECTID, TICKETISSUEDAT y VIOLATIONDESC. 
 	 * La Vista debe recibir una cola con las infracciones.
 	 */
-	public Queue<VOMovingViolations> consultarPorFechaHoraViolationDesc(String pIni, String pFin){
+	public Queue<VOMovingViolations> consultarPorFechaHoraViolationDesc(String ini, String pin){
 		//TODO
+		boolean ya = false;
 
 		generarComparables();
 
@@ -459,7 +467,16 @@ public class Controller {
 
 		Queue<VOMovingViolations> cola = new Queue<VOMovingViolations>();
 
+		for(int i = 0; 0<comparables.length-1 && !ya;i++){
+			VOMovingViolations a = (VOMovingViolations) comparables[i];
+			if(a.getTicketIssueDate().compareTo(ini)==1||a.getTicketIssueDate().compareTo(fin)==-1
+					||a.getTicketIssueDate().compareTo(fin)==0||a.getTicketIssueDate().compareTo(ini)==0){
+						cola.enqueue(a);
+					}
+			if(a.getTicketIssueDate().compareTo(fin)==1){ya;}
+		}
 		return cola;
+
 
 
 	}
