@@ -8,14 +8,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
-
+import model.data_structures.ILinkedList;
 import model.data_structures.IQueue;
 import model.data_structures.IStack;
+import model.data_structures.LinkedList;
+import model.data_structures.Nodo;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
 import model.moving_violations.VOMovingViolations;
+import model.sort.Sort;
 import view.MovingViolationsManagerView;
 
 import com.opencsv.CSVReader;
@@ -31,8 +35,11 @@ public class Controller {
 	 * Pila donde se van a cargar los datos de los archivos
 	 */
 
-	private IStack<VOMovingViolations> movingViolationsStack;
-	private IQueue<VOMovingViolations> movingViolationsQueue;
+	private Stack<VOMovingViolations> movingViolationsStack;
+	private Queue<VOMovingViolations> movingViolationsQueue;
+	private LinkedList<VOMovingViolations> movingViolationsList;
+	
+	Comparable<VOMovingViolations> [ ] comparables;
 
 
 	public Controller() {
@@ -208,9 +215,7 @@ public class Controller {
 
 		for(int i = 0;i<list.size()/10;i++){
 
-
-
-			movingViolationsQueue.enqueue(new VOMovingViolations(
+			movingViolationsList.agregarIni(new VOMovingViolations(
 					list.get(i)[0], 
 					list.get(i)[1], 
 					list.get(i)[2], 
@@ -240,14 +245,21 @@ public class Controller {
 		}
 		return pila;
 	}
+	
+	public void generarComparables(){
+		comparables = new Comparable[movingViolationsList.getSize()];
+		Nodo<VOMovingViolations> objeto = movingViolationsList.darPrimero();;
+		
+		int i=0;
+		while(objeto.darElemento()!=null){
+			
+			comparables[i] = objeto.darElemento();
+			i++;
+			objeto=objeto.darSiguiente();
 
-	/*
-	 * consulta los datos entre unas fecha y hora hasta otra
-	 * facha ini  hasta fecha fin
-	 */
-	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO
+		}
 	}
+
 	/*
 	 * consulta las infracciones en una direccion
 	 * direccion
@@ -277,7 +289,14 @@ public class Controller {
 	 * La Vista debe recibir una cola con las infracciones.	
 	 */
 	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
-		//TODO
+		
+		generarComparables();
+		
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.TicketIssueDate());
+
 	}
 
+	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(){
+		return movingViolationsList;
+	}
 }

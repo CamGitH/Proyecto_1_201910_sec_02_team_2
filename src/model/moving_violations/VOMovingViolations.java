@@ -1,10 +1,11 @@
 package model.moving_violations;
 
+import java.util.Comparator;
 
 /**
  * Representation of a Trip object
  */
-public class VOMovingViolations {
+public class VOMovingViolations implements Comparable<VOMovingViolations>{
 
 	//	OBJECTID,ROW_,LOCATION,ADDRESS_ID,STREETSEGID,XCOORD,YCOORD,TICKETTYPE,FINEAMT,TOTALPAID,PENALTY1,PENALTY2,ACCIDENTINDICATOR,TICKETISSUEDATE,VIOLATIONCODE,VIOLATIONDESC,ROW_ID
 
@@ -286,6 +287,66 @@ public class VOMovingViolations {
 	 */
 	public void setRowID(String rowID) {
 		this.rowID = rowID;
+	}
+
+	public static class TicketIssueDate implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object1.getTicketIssueDate().compareToIgnoreCase(object2.getTicketIssueDate());
+		}
+		
+	}
+	
+	public static class ObjectID implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object1.getObjectID().compareToIgnoreCase(object2.getObjectID());
+		}
+		
+	}
+	
+	public static class StreetSeg implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object1.getStreetSeg().compareToIgnoreCase(object2.getStreetSeg());
+		}
+		
+	}
+	
+	public static class AddressID implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object1.getAddressID().compareToIgnoreCase(object2.getAddressID());
+		}
+		
+	}
+	
+	public static class TotalPaid implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object1.getTotalPaid().compareToIgnoreCase(object2.getTotalPaid());
+		}
+		
+	}
+	
+	public static class ViolationDesc implements Comparator<VOMovingViolations>{
+
+		@Override
+		public int compare(VOMovingViolations object1, VOMovingViolations object2) {
+			return object1.getViolationDescription().compareToIgnoreCase(object2.getViolationDescription());
+		}
+		
+	}
+
+	@Override
+	public int compareTo(VOMovingViolations o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
