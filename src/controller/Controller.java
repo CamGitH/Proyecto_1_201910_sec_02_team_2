@@ -260,15 +260,15 @@ public class Controller {
 		}
 
 	
-	public <T> VOMovingViolations busquedaBin(String busca, LinkedList<T> lista, Sort l){
-		lista.
+	public <T> VOMovingViolations busquedaBin(String busca, Comparable[] lista, VOMovingViolations.AddressID l){
+		Sort.ordenarShellSort(lista, l);
 		int ini = 0;
-		int fin = lista.size();
+		int fin = lista.length;
 		boolean encontrado=false;
 		VOMovingViolations ret=null;
 		while(!encontrado){
 			int mid=(fin-ini/2)+ini;
-			if(lista.get(mid)<busca){
+			if(VOMovingViolationslista[mid].AddressID.compareTo(busca)){
 				ini=mid;
 			}
 			else if(lista.get(mid)>busca){
