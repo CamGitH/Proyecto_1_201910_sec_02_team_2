@@ -256,6 +256,7 @@ public class Controller {
 				fin = mid;
 			}
 			else{
+				ret= lista.get(mid);
 				return ret;
 			}
 		}
