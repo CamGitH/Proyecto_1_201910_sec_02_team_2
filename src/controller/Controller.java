@@ -260,7 +260,8 @@ public class Controller {
 		}
 
 	
-	public VOMovingViolations busquedaBin(String busca, List lista){
+	public <T> VOMovingViolations busquedaBin(String busca, LinkedList<T> lista, Sort l){
+		lista.
 		int ini = 0;
 		int fin = lista.size();
 		boolean encontrado=false;
@@ -273,9 +274,11 @@ public class Controller {
 			else if(lista.get(mid)>busca){
 				fin = mid;
 			}
+			else if (ret == busca){
+				return ret
+			}
 			else{
-				ret= lista.get(mid);
-				return ret;
+				"NO EXISTE"
 			}
 		}
 	}
