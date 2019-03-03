@@ -13,9 +13,11 @@ import java.util.Scanner;
 
 import model.data_structures.IQueue;
 import model.data_structures.IStack;
+import model.data_structures.LinkedList;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
 import model.moving_violations.VOMovingViolations;
+import model.sort.Sort;
 import view.MovingViolationsManagerView;
 
 import com.opencsv.CSVReader;
@@ -31,9 +33,11 @@ public class Controller {
 	 * Pila donde se van a cargar los datos de los archivos
 	 */
 
-	private IStack<VOMovingViolations> movingViolationsStack;
-	private IQueue<VOMovingViolations> movingViolationsQueue;
+	private Stack<VOMovingViolations> movingViolationsStack;
+	private Queue<VOMovingViolations> movingViolationsQueue;
+	private LinkedList<VOMovingViolations> movingViolationsList;
 
+	Comparable<VOMovingViolations> [ ] comparables;
 
 	public Controller() {
 
@@ -210,7 +214,7 @@ public class Controller {
 
 
 
-			movingViolationsQueue.enqueue(new VOMovingViolations(
+			movingViolationsList.agregarIni(new VOMovingViolations(
 					list.get(i)[0], 
 					list.get(i)[1], 
 					list.get(i)[2], 
@@ -240,6 +244,19 @@ public class Controller {
 		}
 		return pila;
 	}
+	
+	public void generarComparables(){
+		comparables = new Comparable[movingViolationsList.getSize()];
+		Nodo<VOMovingViolations> objeto = movingViolationsList.darPrimero();;
+
+		int i=0;
+		while(objeto.darElemento()!=null){
+
+			comparables[i] = objeto.darElemento();
+			i++;
+			objeto=objeto.darSiguiente();
+		}
+		}
 
 	
 	public VOMovingViolations busquedaBin(String busca, List lista){
@@ -277,15 +294,23 @@ public class Controller {
 	}
 
 	public LinkedList<VOMovingViolations> verifyObjectIDIsUnique(){
+		
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.ObjectID());
+		
 		return movingViolationsList;
 	}
-} 
+
 	/*
 	 * consulta las infracciones en una direccion
 	 * direccion
 	 */
 	public VOMovingViolations consultarPorDireccion(String direccion){
-		//TODO organizar
+		
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.AddressID());
 	}
 	/*
 	 * Consultar infracciones  donde  la  cantidad  pagada (TOTALPAID)
@@ -296,7 +321,9 @@ public class Controller {
 	 * Se  ordenapor  fecha  de  infracción.
 	 */
 	public VOMovingViolations consultarPorRangPagado(String min, String max){
-		//TODO organizar
+		generarComparables();
+
+		Sort.ordenarShellSort(comparables, new VOMovingViolations.TotalPaid());
 	}
 	/*
 	 * Consultar infracciones por hora inicial y hora final, 
@@ -310,6 +337,7 @@ public class Controller {
 	 */
 	public VOMovingViolations consultarPorFechaHora(String ini, String fin){
 		//TODO organizar
-	}
+}
+
 
 }

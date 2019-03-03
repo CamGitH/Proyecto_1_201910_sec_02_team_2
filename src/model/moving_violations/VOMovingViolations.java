@@ -1,6 +1,8 @@
 package model.moving_violations;
 
+
 import java.util.Comparator;
+
 
 /**
  * Representation of a Trip object
